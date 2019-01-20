@@ -1,0 +1,10 @@
+D:\Projects\Visual Studio 2017\NewPhotoViewer\NewPhotoViewer\bin\Debug\NewPhotoViewer.exe.config
+D:\Projects\Visual Studio 2017\NewPhotoViewer\NewPhotoViewer\bin\Debug\NewPhotoViewer.exe
+D:\Projects\Visual Studio 2017\NewPhotoViewer\NewPhotoViewer\bin\Debug\NewPhotoViewer.pdb
+D:\Projects\Visual Studio 2017\NewPhotoViewer\NewPhotoViewer\obj\Debug\NewPhotoViewer.csprojAssemblyReference.cache
+D:\Projects\Visual Studio 2017\NewPhotoViewer\NewPhotoViewer\obj\Debug\NewPhotoViewer.Form1.resources
+D:\Projects\Visual Studio 2017\NewPhotoViewer\NewPhotoViewer\obj\Debug\NewPhotoViewer.Properties.Resources.resources
+D:\Projects\Visual Studio 2017\NewPhotoViewer\NewPhotoViewer\obj\Debug\NewPhotoViewer.csproj.GenerateResource.cache
+D:\Projects\Visual Studio 2017\NewPhotoViewer\NewPhotoViewer\obj\Debug\NewPhotoViewer.csproj.CoreCompileInputs.cache
+D:\Projects\Visual Studio 2017\NewPhotoViewer\NewPhotoViewer\obj\Debug\NewPhotoViewer.exe
+D:\Projects\Visual Studio 2017\NewPhotoViewer\NewPhotoViewer\obj\Debug\NewPhotoViewer.pdb
