@@ -18,10 +18,23 @@ namespace NewPhotoViewer {
         string[] imageExtensions = { ".jpg", ".png", ".jpeg", ".jpe", ".gif", ".bmp", ".tiff", ".tif" };        
         private Bitmap myImage;
 
-        // Opening start method from Program.cs if an image file was opened directly
+        // Opening start method from Program.cs if an image file was opened directly        
+        int currentlyLoadedIndex;
         public void StartMethod (string filePath) {
             ShowImage(filePath);
             EnumerateFiles(filePath);
+            currentlyLoadedIndex = imageFileList.IndexOf(filePath);
+        }
+
+        // Enumerate files in directory
+        List<string> imageFileList = new List<string>();
+        public void EnumerateFiles(string filePath) {
+            string[] allFiles = Directory.GetFiles(Path.GetDirectoryName(filePath), "*");
+            foreach (string file in allFiles) {
+                if (IsImage(file)) {
+                    imageFileList.Add(file);
+                }
+            }
         }
 
         public void OpenImage() {
@@ -42,17 +55,12 @@ namespace NewPhotoViewer {
 
         // Make picture box show an image, perform an extension check beforehand
         string currentlyLoadedFile;
-        int currentlyLoadedIndex;
         public void ShowImage(string filePath) {
             if (IsImage(filePath)) {
                 pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
                 myImage = new Bitmap(filePath);
                 pictureBox1.Image = (Image) myImage;
-                //currentlyLoadedFile = filePath;
-                //currentlyLoadedIndex = imageFileList.IndexOf("filePath");
-                //TextBoxDisplay(currentlyLoadedFile);
-                //TextBoxDisplay(currentlyLoadedIndex.ToString());
-                //TextBoxDisplay(imageFileList[currentlyLoadedIndex + 1]);
+                currentlyLoadedFile = filePath;                
             }
         }
 
@@ -60,25 +68,15 @@ namespace NewPhotoViewer {
         public bool IsImage(string filePath) {
             bool isImage = false;
             foreach (string s in imageExtensions) {
-                if (Path.GetExtension(filePath) == s)
+                if (Path.GetExtension(filePath) == s) {
                     isImage = true;
+                    break;
+                }
             }
             return isImage;
         }
 
-        // Enumerate files in directory
-        List<string> imageFileList = new List<string>();
-        public void EnumerateFiles(string filePath) {
-           string[] allFiles = Directory.GetFiles(Path.GetDirectoryName(filePath), "*");
-           foreach (string file in allFiles) {
-                foreach (string s in imageExtensions) {
-                    if (Path.GetExtension(file) == s) {
-                        imageFileList.Add(file);
-                        TextBoxDisplay(file);
-                    }                   
-                }
-           } 
-        }
+
 
         private void button1_Click(object sender, EventArgs e) {
             OpenImage();
@@ -89,7 +87,13 @@ namespace NewPhotoViewer {
         }
 
         private void button2_Click(object sender, EventArgs e) {
+            ShowImage(imageFileList[(currentlyLoadedIndex + 1) % imageFileList.Count]); // % is an easier solution to deal with getting to the end of the list
+            currentlyLoadedIndex++;
+        }
 
+        private void button3_Click(object sender, EventArgs e) {
+            ShowImage(imageFileList[(currentlyLoadedIndex - 1) % imageFileList.Count]); // % is an easier solution to deal with getting to the end of the list
+            currentlyLoadedIndex--;
         }
     }
 }
