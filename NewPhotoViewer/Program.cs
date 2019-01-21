@@ -13,28 +13,29 @@ namespace NewPhotoViewer {
         /// </summary>
         [STAThread]
         static void Main(string[] args) {
-            if (args != null && args.Length > 0) { // Arguments found
-                string fileName = args[0]; // Picking the first file if multiple files are selected?
-                if (File.Exists(fileName)) { // Check file exists
-                    Application.EnableVisualStyles();
-                    Application.SetCompatibleTextRenderingDefault(false);
-
-                    // This is just how it works, this piece of code will do startup methods if launched externally
-                    Form1 MainForm = new Form1();
-                    MainForm.StartMethod(fileName); // StartMethod is run if the app was launched by clicking a file
-                    Application.Run(MainForm);
-                } else { // If no file exists, launch app anyway, this bit is probably redundant.
-                    MessageBox.Show("No file exists", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                    Application.EnableVisualStyles();
-                    Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new Form1());
-                }
-            } else { // No arguments found
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new Form1());
+            if (args != null && args.Length > 0) { // Arguments found then check file 1 of the arguments exists              
+                if (File.Exists(args[0]))
+                    StartFormWithArgument(args[0]);
+                else
+                    StartFormWithoutArgument();
+            } else {
+                StartFormWithoutArgument();
             }
+        }
+
+        // This is just how it works, this piece of code will do startup methods if launched externally
+        public static void StartFormWithArgument(string fileName) {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Form1 MainForm = new Form1();
+            MainForm.StartMethod(fileName);
+            Application.Run(MainForm);
+        }
+
+        public static void StartFormWithoutArgument() {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
         }
     }
 }
