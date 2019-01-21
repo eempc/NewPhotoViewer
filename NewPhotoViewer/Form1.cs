@@ -102,30 +102,27 @@ namespace NewPhotoViewer {
         double currentZoomFactor = 1;
         double zoomStep = 0.1;
         private void buttonZoomIn_Click(object sender, EventArgs e) {
-            if (currentZoomFactor < 2) {
-                //Size newSize = new Size((int) (currentImage.Width * (currentZoomFactor + zoomStep)), (int) (currentImage.Height * (currentZoomFactor + zoomStep)));
-                //Bitmap bmp = new Bitmap(currentImage, newSize);
-                //pictureBox1.Image = bmp;
-                //currentZoomFactor += zoomStep;
-                Zoom(1);
-            }
+            if (currentZoomFactor < 2) Zoom(1);
         }
 
         private void buttonZoomOut_Click(object sender, EventArgs e) {
-            if (currentZoomFactor > 0.1) {
-                //Size newSize = new Size((int) (currentImage.Width * (currentZoomFactor - zoomStep)), (int) (currentImage.Height * (currentZoomFactor - zoomStep)));
-                //Bitmap bmp = new Bitmap(currentImage, newSize);
-                //pictureBox1.Image = bmp;
-                //currentZoomFactor -= zoomStep;
-                Zoom(-1);
-            }
+            if (currentZoomFactor > 0.1) Zoom(-1);
         }
 
         public void Zoom(int x) {
-            Size newSize = new Size((int) (currentImage.Width * (currentZoomFactor + zoomStep * x)), (int) (currentImage.Height * (currentZoomFactor + zoomStep * x)));
+            Size newSize = new Size(
+                (int) (currentImage.Width * (currentZoomFactor + zoomStep * x)), 
+                (int) (currentImage.Height * (currentZoomFactor + zoomStep * x))
+            );
             Bitmap bmp = new Bitmap(currentImage, newSize);
             pictureBox1.Image = bmp;
-            currentZoomFactor += zoomStep *x;
+            currentZoomFactor += zoomStep * x;
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e) => Application.Exit();
+
+        private void openFileToolStripMenuItem_Click(object sender, EventArgs e) {
+            OpenImage();
         }
     }
 }
