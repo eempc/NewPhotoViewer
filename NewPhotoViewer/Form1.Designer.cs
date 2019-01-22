@@ -56,7 +56,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(53, 340);
+            this.textBox1.Location = new System.Drawing.Point(53, 486);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -68,13 +68,13 @@
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(53, 53);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(754, 281);
+            this.pictureBox1.Size = new System.Drawing.Size(1020, 427);
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(813, 53);
+            this.button2.Location = new System.Drawing.Point(1079, 53);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(44, 23);
             this.button2.TabIndex = 3;
@@ -105,18 +105,19 @@
             this.tableLayoutPanel1.Controls.Add(this.button2, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.buttonZoomIn, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.buttonZoomOut, 2, 2);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(114, 61);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(860, 387);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1126, 533);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // buttonZoomIn
             // 
-            this.buttonZoomIn.Location = new System.Drawing.Point(3, 340);
+            this.buttonZoomIn.Location = new System.Drawing.Point(3, 486);
             this.buttonZoomIn.Name = "buttonZoomIn";
             this.buttonZoomIn.Size = new System.Drawing.Size(44, 44);
             this.buttonZoomIn.TabIndex = 5;
@@ -126,7 +127,7 @@
             // 
             // buttonZoomOut
             // 
-            this.buttonZoomOut.Location = new System.Drawing.Point(813, 340);
+            this.buttonZoomOut.Location = new System.Drawing.Point(1079, 486);
             this.buttonZoomOut.Name = "buttonZoomOut";
             this.buttonZoomOut.Size = new System.Drawing.Size(44, 44);
             this.buttonZoomOut.TabIndex = 6;
@@ -156,14 +157,14 @@
             // openFileToolStripMenuItem
             // 
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.openFileToolStripMenuItem.Text = "Open File";
             this.openFileToolStripMenuItem.Click += new System.EventHandler(this.openFileToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
