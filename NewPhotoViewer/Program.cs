@@ -13,7 +13,7 @@ namespace NewPhotoViewer {
         /// </summary>
         [STAThread]
         static void Main(string[] args) {
-            if (args != null && args.Length > 0) { // Arguments found then check file 1 of the arguments exists              
+            if (args != null && args.Length > 0) { // Arguments found then check zeroth file of the arguments exists              
                 if (File.Exists(args[0]))
                     StartFormWithArgument(args[0]);
                 else

@@ -9,22 +9,27 @@ using System.Threading;
 using System.Windows.Forms;
 using System.IO;
 
+// Next steps: preview bar at the bottom? Animating the preview bar when a new image is selected
+// Directory list
+// Image information such as size, resolution, tag information
+// Aesthetic buttons
+
 namespace NewPhotoViewer {
     public partial class Form1 : Form {
         public Form1() {
             InitializeComponent();
             tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.InsetDouble;
-            pictureBox1.MouseWheel += new MouseEventHandler(pictureBox1_MouseWheel);
+            pictureBox1.MouseWheel += new MouseEventHandler(pictureBox1_MouseWheel); // Mouse wheel enabled for picturebox
         }
 
-        private void pictureBox1_MouseWheel(object sender, MouseEventArgs e) {            
-                if (e.Delta > 0) {
-                if (currentZoomFactor < 2) Zoom(1);
-            }              
-                else {
-                    if (currentZoomFactor > 0.2) Zoom(-1);
-                }
-          
+        // Mouse wheel up/down
+        private void pictureBox1_MouseWheel(object sender, MouseEventArgs e) {      
+            if (e.Delta > 0) {
+                if (currentZoomFactor < maxZoomIn) Zoom(1);
+            }
+            else {
+                if (currentZoomFactor > maxZoomOut) Zoom(-1);
+            }
         }
 
         string[] imageExtensions = { ".jpg", ".png", ".jpeg", ".jpe", ".gif", ".bmp", ".tiff", ".tif" };        
@@ -52,9 +57,8 @@ namespace NewPhotoViewer {
         public void OpenImage() {
             // Create a string for the file dialogue filter based on the declared string array
             string filterString = "Image files|";
-            foreach (string s in imageExtensions) {
+            foreach (string s in imageExtensions)
                 filterString += "*" + s + ";"; 
-            }
             filterString = filterString.Remove(filterString.Length - 1); // Remove last char
 
             // Open a file manually with the button
@@ -69,7 +73,7 @@ namespace NewPhotoViewer {
         // Make picture box show an image, perform an extension check beforehand
         string currentlyLoadedFile;
         public void ShowImage(string filePath) {
-            if (IsImage(filePath)) {
+            if (IsImage(filePath) && File.Exists(filePath)) {
                 pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
                 currentImage = new Bitmap(filePath);
                 pictureBox1.Image = (Image) currentImage;
@@ -96,7 +100,7 @@ namespace NewPhotoViewer {
         }
 
         // Diagnostic text box
-        public void TextBoxDisplay(string someString) {            
+        public void TextBoxDisplay(string someString) {
             textBox1.AppendText(DateTime.Now.ToString() + " - " + someString + Environment.NewLine);
         }
 
@@ -110,15 +114,17 @@ namespace NewPhotoViewer {
             ShowImage(imageFileList[(currentlyLoadedIndex + (imageFileList.Count - 1)) % imageFileList.Count]); // Formula for rollover at <0
         }
 
+        // Zoom stuff
         double currentZoomFactor = 1;
         double zoomStep = 0.1;
+        double maxZoomIn = 2;
+        double maxZoomOut = 0.2;
         private void buttonZoomIn_Click(object sender, EventArgs e) {
-            if (currentZoomFactor < 2) Zoom(1);
-            
+            if (currentZoomFactor < maxZoomIn) Zoom(1);            
         }
 
         private void buttonZoomOut_Click(object sender, EventArgs e) {
-            if (currentZoomFactor > 0.2) Zoom(-1);
+            if (currentZoomFactor > maxZoomOut) Zoom(-1);
         }
 
         public void Zoom(int x) {
@@ -133,11 +139,6 @@ namespace NewPhotoViewer {
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) => Application.Exit();
-
-        private void openFileToolStripMenuItem_Click(object sender, EventArgs e) {
-            OpenImage();
-        }
-
-
+        private void openFileToolStripMenuItem_Click(object sender, EventArgs e) => OpenImage();
     }
 }
